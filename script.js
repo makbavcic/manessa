@@ -210,7 +210,7 @@ function main() {
     navBarHeight = document.getElementById("navigation")?.getBoundingClientRect().height || 64;
 
     const navReel = new PositionMarkerReel(document.getElementById("navigation"));
-    const sectionElements = Array.from(document.getElementsByTagName("section"));
+    const sectionElements = Array.from(document.getElementsByClassName("main-section"));
 
     let sectionTops = sectionElements.map(e => {
         let rect = e.getBoundingClientRect();

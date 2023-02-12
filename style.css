@@ -71,8 +71,8 @@ body {
 .nav-item svg {
     display: block;
     margin: 0 auto;
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
 }
 
 .nav-item span {
@@ -161,9 +161,8 @@ section img.small {
     max-height: 200px;
 }
 
-
 footer {
-    min-height: 100vh;
+    min-height: 70vh;
 }
 
 footer img {
