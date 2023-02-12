@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&family=Jost:wght@100;200;300;400&family=Reenie+Beanie&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    --font-family-headings: 'DM Serif Display', serif;
+    --font-family-text: 'Hanken Grotesk', sans-serif;
+    --font-family-decoration: 'Reenie Beanie', cursive;
+
+    --nav-item-width: 64px;
+    width: calc(100% - 16px);
+}
+
+#navigation {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: #FFFC;
+    padding: 10px 0;
+}
+
+#navigation-content {
+    margin: 0 auto;
+    width: calc(7 * var(--nav-item-width) + 6 * 30px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1em;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    body {
+        width: calc(100% - 16px);
+    }
+
+    #navigation-content {
+        width: calc(100% - 16px);
+        flex-wrap: wrap;
+    }
+
+    #content {
+        width: 100%;
+    }
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.nav-item {
+    color: #333;
+    fill: #333;
+    transition: fill,color 0.2s;
+}
+
+.nav-item.active {
+    fill: #3a86ff;
+    color: #3a86ff;
+}
+
+.nav-item a {
+    color: inherit;
+}
+
+.nav-item svg {
+    display: block;
+    margin: 0 auto;
+    width: 5px;
+    height: 5px;
+}
+
+.nav-item span {
+    text-decoration: none;
+    font-family: var(--font-family-headings);
+}
+
+/* Main content styles */
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+}
+
+.decoration {
+    font-family: 'Reenie Beanie', cursive;
+}
+
+#content {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto 0 auto;
+}
+
+.text-notice { 
+    font-family: var(--font-family-text);
+    color: #666;
+    font-weight: 300;
+    font-style: italic;
+}
+
+#content section {
+    width: 100%;
+}
+
+#content section p {
+    font-family: var(--font-family-text);
+    font-weight: 300;
+}
+
+#content section ul {
+    font-family: var(--font-family-text);
+    font-weight: 300;
+}
+
+.emoji-icon {
+    font-size: 2em;
+}
+
+#content p a.in-text {
+    color: #118;
+    text-decoration: underline dotted 1px;
+}
+
+#content section h2 span {
+    vertical-align: middle;
+}
+
+#content section h2, h3, h4, h5 {
+    font-family: var(--font-family-headings);
+}
+
+#content section h5 {
+    font-size: 0.9em;
+}
+
+#content ul {
+    list-style-image: url('images/finger.png');
+}
+
+
+#content p.list-header {
+    font-style: italic;
+}
+
+section img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 400px;
+}
+
+section img.small {
+    max-height: 200px;
+}
+
+
+footer {
+    min-height: 100vh;
+}
+
+footer img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 400px;
+}
+
+footer p {
+    font-size: 0.8em;
+}
+
+
+.entry-list h3 {
+    font-family: var(--font-family-headings);
+}
+
+.entry-list img {
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+    object-position: 10%;
+}
+
+.entry-details {
+    font-size: 0.8em;
+    color: #333;
+}
+
+/* Debug only - can be removed when ready */
+
+.marker {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
