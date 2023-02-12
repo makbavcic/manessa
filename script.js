@@ -205,7 +205,7 @@ function addMarker(top, left) {
     document.body.appendChild(markerDiv);
 }
 
-function scrollUpdate(sectionTops, spacers, titleSpacer, navReel){
+function scrollUpdate(sectionTops, spacers, navReel, titleSpacer){
 
     const actionStack = [];
 
@@ -244,7 +244,7 @@ function scrollUpdate(sectionTops, spacers, titleSpacer, navReel){
         )
     }
 
-    actionStack.push(() => titleSpacer.update(windowPosition));
+    // actionStack.push(() => titleSpacer.update(windowPosition));
 
     // Call any actions in the stack at the next frame
     window.requestAnimationFrame(() => actionStack.map(e => e.call()));
@@ -272,9 +272,9 @@ function main() {
         e => new ColourChangingSpacer(e, 4, "stroke")
     );
 
-    const titleSpacer = new ColourChangingSpacer(document.getElementById("main-title"), 4, "color");
+    // const titleSpacer = new ColourChangingSpacer(document.getElementById("main-title"), 4, "color");
 
-    document.addEventListener("scroll", e => { scrollUpdate(sectionTops, spacers, titleSpacer, navReel) });
+    document.addEventListener("scroll", e => { scrollUpdate(sectionTops, spacers, navReel/*, titleSpacer*/ ) });
 
     window.addEventListener("resize", e => {
         navBarHeight = document.getElementById("navigation")?.getBoundingClientRect().height || 64;
@@ -289,7 +289,7 @@ function main() {
     });
 
     // Fire an update of scroll related items at the start
-    scrollUpdate(sectionTops, spacers, titleSpacer, navReel);
+    scrollUpdate(sectionTops, spacers, navReel); //, titleSpacer);
 
 };
 
