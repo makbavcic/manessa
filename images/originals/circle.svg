@@ -8,7 +8,7 @@
    fill="none"
    version="1.1"
    id="svg397"
-   sodipodi:docname="location.svg"
+   sodipodi:docname="circle.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="2"
-     inkscape:cx="446.75"
-     inkscape:cy="541.25"
+     inkscape:zoom="1"
+     inkscape:cx="166.5"
+     inkscape:cy="504.5"
      inkscape:window-width="2560"
      inkscape:window-height="1355"
      inkscape:window-x="0"
@@ -45,15 +45,9 @@
   <path
      fill-rule="evenodd"
      clip-rule="evenodd"
-     d="M 12.022282,22.965287 C 9.9546421,23.05568 5.4541524,18.273162 3.5960235,15.015378 2.7154025,13.449809 2.0724762,11.725894 2.0724762,9.9991993 c 0,-2.6329384 1.0459341,-5.1580438 2.9077024,-7.0198219 1.8617781,-1.8617682 4.3868832,-2.90770243 7.0198224,-2.90770243 2.632978,0 5.158044,1.04593423 7.019851,2.90770243 1.861709,1.8617781 2.907673,4.3868835 2.907673,7.0198219 0,1.7266947 -0.69251,3.4522527 -1.57318,5.0178217 -2.243153,3.379558 -5.201746,7.811333 -8.331189,7.94849 -4.72e-4,5.48e-4 -1.54e-4,-1.62e-4 -8.74e-4,-2.24e-4 z"
+     d="M 12.013925,16.05891 C 10.138982,16.059794 7.909221,15.136679 6.747997,13.100751 6.1976594,12.12236 5.7958673,11.045012 5.7958673,9.9659268 c 0,-1.6454355 0.6536489,-3.2234815 1.8171473,-4.386986 1.1635045,-1.1634984 2.7415504,-1.8171473 4.3869864,-1.8171473 1.64546,0 3.223482,0.6536489 4.387004,1.8171473 1.163461,1.1635045 1.817129,2.7415505 1.817129,4.386986 0,1.0790852 -0.432779,2.1574602 -0.983147,3.1358512 -1.401842,2.112029 -3.262265,2.949958 -5.206516,2.957272 -2.95e-4,3.42e-4 -9.6e-5,-1.01e-4 -5.46e-4,-1.4e-4 z"
      fill="#000000"
      id="path395"
      sodipodi:nodetypes="ccscscsccc"
      style="stroke-width:0.999996" />
-  <circle
-     style="fill:none;stroke:#ff0000;stroke-width:0.0226772;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:3.77953;stroke-opacity:0.512942"
-     id="path584"
-     cx="12.001885"
-     cy="9.9017963"
-     r="9.8454695" />
 </svg>

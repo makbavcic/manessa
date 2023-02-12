@@ -131,10 +131,11 @@ const colourScheme = [
 
 class ColourChangingSpacer {
 
-    constructor(element, numColours) {
+    constructor(element, numColours, property) {
         
         this.element = element;
         this.recalculate();
+        this.property = property;
 
         this.numColours = numColours || 2;
         if(this.numColours > colourScheme.length){
@@ -186,7 +187,7 @@ class ColourChangingSpacer {
         if(DEBUG) { console.log("Spacer position:", yRelative); }
         if (yRelative < 0 || yRelative > 1) { return; }
         let newColour = this.colourBlend(yRelative);
-        this.element.style.stroke = newColour;
+        this.element.style[this.property] = newColour;
     }
 
 }
@@ -202,6 +203,52 @@ function addMarker(top, left) {
     markerDiv.style.top = top.toString() + "px";
     markerDiv.style.left = left.toString() + "px";
     document.body.appendChild(markerDiv);
+}
+
+function scrollUpdate(sectionTops, spacers, titleSpacer, navReel){
+
+    const actionStack = [];
+
+    const windowPosition = window.scrollY;
+    const windowPositionHeadings = windowPosition + window.innerHeight / 5;
+
+    if (DEBUG) { console.log(windowPosition); }
+    // Calculate which element is within the 'header' region.
+    for (let i = 0; i < sectionTops.length; i++) {
+        let itemUnderTest = sectionTops[i];
+
+        if (i == 0 && itemUnderTest.top > windowPositionHeadings) {
+            if (DEBUG) { console.log("Deactivating"); }
+            actionStack.push(() => navReel.deactivate());
+            break;
+        }
+        else if (i == sectionTops.length - 1) {
+            // Last element, must be this one.
+            if (DEBUG) { console.log("Activating: ", itemUnderTest.id); }
+            actionStack.push(() => navReel.setActive(itemUnderTest.id));
+            break;
+        } else {
+            // Not last element, need to check whether scroll is within it
+            let nextItem = sectionTops[i + 1];
+            if ((windowPositionHeadings >= itemUnderTest.top) && (windowPositionHeadings <= nextItem.top)) {
+                if (DEBUG) { console.log("Activating: ", itemUnderTest.id); }
+                actionStack.push(() => navReel.setActive(itemUnderTest.id));
+                break;
+            }
+        }
+    }
+
+    for(let spacer of spacers){
+        actionStack.push(
+            () => spacer.update(windowPosition)
+        )
+    }
+
+    actionStack.push(() => titleSpacer.update(windowPosition));
+
+    // Call any actions in the stack at the next frame
+    window.requestAnimationFrame(() => actionStack.map(e => e.call()));
+
 }
 
 
@@ -222,52 +269,12 @@ function main() {
     sectionTops.sort((a, b) => a.top - b.top);
 
     const spacers = Array.from(document.getElementsByClassName("spacer-line")).map(
-        e => new ColourChangingSpacer(e, 4)
+        e => new ColourChangingSpacer(e, 4, "stroke")
     );
 
-    document.addEventListener("scroll", e => {
+    const titleSpacer = new ColourChangingSpacer(document.getElementById("main-title"), 4, "color");
 
-        const actionStack = [];
-
-        const windowPosition = window.scrollY;
-        const windowPositionHeadings = windowPosition + window.innerHeight / 5;
-
-        if (DEBUG) { console.log(windowPosition); }
-        // Calculate which element is within the 'header' region.
-        for (let i = 0; i < sectionTops.length; i++) {
-            let itemUnderTest = sectionTops[i];
-
-            if (i == 0 && itemUnderTest.top > windowPositionHeadings) {
-                if (DEBUG) { console.log("Deactivating"); }
-                actionStack.push(() => navReel.deactivate());
-                break;
-            }
-            else if (i == sectionTops.length - 1) {
-                // Last element, must be this one.
-                if (DEBUG) { console.log("Activating: ", itemUnderTest.id); }
-                actionStack.push(() => navReel.setActive(itemUnderTest.id));
-                break;
-            } else {
-                // Not last element, need to check whether scroll is within it
-                let nextItem = sectionTops[i + 1];
-                if ((windowPositionHeadings >= itemUnderTest.top) && (windowPositionHeadings <= nextItem.top)) {
-                    if (DEBUG) { console.log("Activating: ", itemUnderTest.id); }
-                    actionStack.push(() => navReel.setActive(itemUnderTest.id));
-                    break;
-                }
-            }
-        }
-
-        for(let spacer of spacers){
-            actionStack.push(
-                () => spacer.update(windowPosition)
-            )
-        }
-
-        // Call any actions in the stack at the next frame
-        window.requestAnimationFrame(() => actionStack.map(e => e.call()))
-
-    });
+    document.addEventListener("scroll", e => { scrollUpdate(sectionTops, spacers, titleSpacer, navReel) });
 
     window.addEventListener("resize", e => {
         navBarHeight = document.getElementById("navigation")?.getBoundingClientRect().height || 64;
@@ -279,7 +286,10 @@ function main() {
             if (DEBUG) { addMarker(absoluteTop, rect.left) }
             return { id: e.id, top: absoluteTop }
         });    
-    })
+    });
+
+    // Fire an update of scroll related items at the start
+    scrollUpdate(sectionTops, spacers, titleSpacer, navReel);
 
 };
 
