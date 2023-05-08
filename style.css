@@ -163,6 +163,10 @@ h1 {
     font-size: 2em;
 }
 
+.emoji-icon-small {
+    font-size: 1.5em;
+}
+
 #content p a.in-text {
     color: #118;
     text-decoration: underline dotted 1px;
@@ -176,9 +180,15 @@ h1 {
     font-family: var(--font-family-headings);
 }
 
+h4 .header-date {
+    font-family: var(--font-family-text);
+    font-weight: 200;
+}
+
 #content section h5 {
     font-size: 0.9em;
 }
+
 
 
 #content ul {
@@ -195,6 +205,7 @@ h1 {
 }
 
 
+
 #content p.list-header {
     font-style: italic;
 }
@@ -207,6 +218,20 @@ section img {
 
 section img.small {
     max-height: 200px;
+}
+
+section div.update {
+    border: 1px solid #ff006e55;
+    border-radius: 5px;
+    background-color: #ff006e22;
+    padding: 0 1em;
+    margin: 10px 0;
+    box-shadow: 0px 0px 10px #ff006e55;
+}
+
+section div.update h3{
+    font-style: italic;
+    color: #ff006e;
 }
 
 footer {
